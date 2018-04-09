@@ -136,7 +136,4 @@ $(document).on("ready turbolinks:load", function(){
     $('#modalFillIn').on('hidden.bs.modal', function(e) {
         $('body').removeClass('fill-in-modal');
     });
-
-
-
 });
