@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <meta charset="utf-8" />
+  <title>Pages Rails Sample App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <link rel="apple-touch-icon" href="<%= image_path('ico/60.png') %>">
+  <link rel="apple-touch-icon" sizes="76x76" href="<%= image_path('ico/76.png') %>">
+  <link rel="apple-touch-icon" sizes="120x120" href="<%= image_path('ico/120.png') %>">
+  <link rel="apple-touch-icon" sizes="152x152" href="<%= image_path('ico/152.png') %>">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-touch-fullscreen" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta content="" name="description" />
+  <meta content="" name="author" />
+
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+
+  <%= csrf_meta_tags %>
+
+  <%= javascript_include_tag 'application', :defer => "defer" %>
+</head>
+<body class="fixed-header dashboard">
+  <!-- BEGIN SIDEBAR -->
+  <%= render 'layouts/sidenav' %>
+  <!-- END SIDEBAR -->
+  <!-- START PAGE-CONTAINER -->
+  <div class="page-container">
+    <!-- START PAGE HEADER WRAPPER -->
+    <!-- START HEADER -->
+    <%= render 'layouts/header' %>
+    <!-- END HEADER -->
+    <!-- END PAGE HEADER WRAPPER -->
+    <!-- START PAGE CONTENT WRAPPER -->
+    <div class="page-content-wrapper">
+      <%= yield %>
+      <!-- END PAGE CONTENT -->
+      <!-- START FOOTER -->
+      <div class="container-fluid container-fixed-lg footer">
+        <div class="copyright sm-text-center">
+          <p class="small no-margin pull-left sm-pull-reset">
+            <span class="hint-text">Copyright © 2014</span>
+            <span class="font-montserrat">REVOX</span>.
+            <span class="hint-text">All rights reserved.</span>
+            <span class="sm-block"><a href="#" class="m-l-10 m-r-10">Terms of use</a> | <a href="#" class="m-l-10">Privacy Policy</a>
+                      </span>
+          </p>
+          <p class="small no-margin pull-right sm-pull-reset">
+            <a href="#">Hand-crafted</a>
+            <span class="hint-text">&amp; Made with Love ®</span>
+          </p>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+      <!-- END FOOTER -->
+    </div>
+    <!-- END PAGE CONTENT WRAPPER -->
+  </div>
+  <!-- END PAGE CONTAINER -->
+  <!--START QUICKVIEW -->
+  <%= render 'layouts/quickview' %>
+  <!-- END QUICKVIEW-->
+  <!-- START OVERLAY -->
+  <div class="overlay" style="display: none" data-pages="search">
+    <!-- BEGIN Overlay Content !-->
+    <div class="overlay-content has-results m-t-20">
+      <!-- BEGIN Overlay Header !-->
+      <div class="container-fluid">
+        <!-- BEGIN Overlay Logo !-->
+        <img class="overlay-brand" src="<%= image_path('logo.png') %>" alt="logo" data-src="<%= image_path('logo.png') %>" data-src-retina="<%= image_path('logo_2x.png') %>" width="78" height="22">
+        <!-- END Overlay Logo !-->
+        <!-- BEGIN Overlay Close !-->
+        <a href="#" class="close-icon-light overlay-close text-black fs-16">
+          <i class="pg-close"></i>
+        </a>
+        <!-- END Overlay Close !-->
+      </div>
+      <!-- END Overlay Header !-->
+      <div class="container-fluid">
+        <!-- BEGIN Overlay Controls !-->
+        <input id="overlay-search" class="no-border overlay-search bg-transparent" placeholder="Search..." autocomplete="off" spellcheck="false">
+        <br>
+        <div class="inline-block">
+          <div class="checkbox right">
+            <input id="checkboxn" type="checkbox" value="1" checked="checked">
+            <label for="checkboxn"><i class="fa fa-search"></i> Search within page</label>
+          </div>
+        </div>
+        <div class="inline-block m-l-10">
+          <p class="fs-13">Press enter to search</p>
+        </div>
+        <!-- END Overlay Controls !-->
+      </div>
+      <!-- BEGIN Overlay Search Results, This part is for demo purpose, you can add anything you like !-->
+      <div class="container-fluid">
+        <span>
+              <strong>suggestions :</strong>
+          </span>
+        <span id="overlay-suggestions"></span>
+        <br>
+        <div class="search-results m-t-40">
+          <p class="bold">Pages Search Results</p>
+          <div class="row">
+            <div class="col-md-6">
+              <!-- BEGIN Search Result Item !-->
+              <div class="">
+                <!-- BEGIN Search Result Item Thumbnail !-->
+                <div class="thumbnail-wrapper d48 circular bg-success text-white inline m-t-10">
+                  <div>
+                    <img width="50" height="50" src="<%= image_path('profiles/avatar.jpg') %>" data-src="<%= image_path('profiles/avatar.jpg') %>" data-src-retina="<%= image_path('profiles/avatar2x.jpg') %>" alt="">
+                  </div>
+                </div>
+                <!-- END Search Result Item Thumbnail !-->
+                <div class="p-l-10 inline p-t-5">
+                  <h5 class="m-b-5"><span class="semi-bold result-name">ice cream</span> on pages</h5>
+                  <p class="hint-text">via john smith</p>
+                </div>
+              </div>
+              <!-- END Search Result Item !-->
+              <!-- BEGIN Search Result Item !-->
+              <div class="">
+                <!-- BEGIN Search Result Item Thumbnail !-->
+                <div class="thumbnail-wrapper d48 circular bg-success text-white inline m-t-10">
+                  <div>T</div>
+                </div>
+                <!-- END Search Result Item Thumbnail !-->
+                <div class="p-l-10 inline p-t-5">
+                  <h5 class="m-b-5"><span class="semi-bold result-name">ice cream</span> related topics</h5>
+                  <p class="hint-text">via pages</p>
+                </div>
+              </div>
+              <!-- END Search Result Item !-->
+              <!-- BEGIN Search Result Item !-->
+              <div class="">
+                <!-- BEGIN Search Result Item Thumbnail !-->
+                <div class="thumbnail-wrapper d48 circular bg-success text-white inline m-t-10">
+                  <div><i class="fa fa-headphones large-text "></i>
+                  </div>
+                </div>
+                <!-- END Search Result Item Thumbnail !-->
+                <div class="p-l-10 inline p-t-5">
+                  <h5 class="m-b-5"><span class="semi-bold result-name">ice cream</span> music</h5>
+                  <p class="hint-text">via pagesmix</p>
+                </div>
+              </div>
+              <!-- END Search Result Item !-->
+            </div>
+            <div class="col-md-6">
+              <!-- BEGIN Search Result Item !-->
+              <div class="">
+                <!-- BEGIN Search Result Item Thumbnail !-->
+                <div class="thumbnail-wrapper d48 circular bg-info text-white inline m-t-10">
+                  <div><i class="fa fa-facebook large-text "></i>
+                  </div>
+                </div>
+                <!-- END Search Result Item Thumbnail !-->
+                <div class="p-l-10 inline p-t-5">
+                  <h5 class="m-b-5"><span class="semi-bold result-name">ice cream</span> on facebook</h5>
+                  <p class="hint-text">via facebook</p>
+                </div>
+              </div>
+              <!-- END Search Result Item !-->
+              <!-- BEGIN Search Result Item !-->
+              <div class="">
+                <!-- BEGIN Search Result Item Thumbnail !-->
+                <div class="thumbnail-wrapper d48 circular bg-complete text-white inline m-t-10">
+                  <div><i class="fa fa-twitter large-text "></i>
+                  </div>
+                </div>
+                <!-- END Search Result Item Thumbnail !-->
+                <div class="p-l-10 inline p-t-5">
+                  <h5 class="m-b-5">Tweats on<span class="semi-bold result-name"> ice cream</span></h5>
+                  <p class="hint-text">via twitter</p>
+                </div>
+              </div>
+              <!-- END Search Result Item !-->
+              <!-- BEGIN Search Result Item !-->
+              <div class="">
+                <!-- BEGIN Search Result Item Thumbnail !-->
+                <div class="thumbnail-wrapper d48 circular text-white bg-danger inline m-t-10">
+                  <div><i class="fa fa-google-plus large-text "></i>
+                  </div>
+                </div>
+                <!-- END Search Result Item Thumbnail !-->
+                <div class="p-l-10 inline p-t-5">
+                  <h5 class="m-b-5">Circles on<span class="semi-bold result-name"> ice cream</span></h5>
+                  <p class="hint-text">via google plus</p>
+                </div>
+              </div>
+              <!-- END Search Result Item !-->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END Overlay Search Results !-->
+    </div>
+    <!-- END Overlay Content !-->
+  </div>
+  <!-- END OVERLAY -->
+</body>
+</html>
