@@ -20,7 +20,7 @@
 
   <%= csrf_meta_tags %>
 
-  <%= javascript_include_tag 'application', :defer => "defer" %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload', :defer => "defer" %>
 </head>
 <body class="fixed-header dashboard">
   <!-- BEGIN SIDEBAR -->
