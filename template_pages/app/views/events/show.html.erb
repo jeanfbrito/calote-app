@@ -1,0 +1,11 @@
+<div class="content ">
+  <div class="container-fluid">
+    <h3>Exemplo de como criar link do arquivo</h3>
+    <% @event.subjects.each do |subject| %>
+      <% subject.files.each do |file| %>
+        <%= file.filename %>
+        <%= link_to file.filename, url_for(file) %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

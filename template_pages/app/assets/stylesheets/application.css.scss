@@ -21,9 +21,15 @@
 *= require mapplic/css/mapplic
 *= require rickshaw/rickshaw.min
 *= require bootstrap-datepicker/css/datepicker3
+*= require bootstrap-daterangepicker/daterangepicker-bs3
+
 *= require jquery-metrojs/MetroJs
 *= require css/pages-icons
 *= require css/pages
+*= require fullcalendar
 *= require_self
 */
 
+.daterangepicker {
+  z-index: 1050 !important;
+}

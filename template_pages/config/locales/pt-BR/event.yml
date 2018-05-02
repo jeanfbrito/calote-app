@@ -1,0 +1,22 @@
+pt-BR:
+  activerecord:
+    models:
+      event:
+        one: Reunião
+        other: Reuniões
+    attributes:
+      event:
+        title: Titulo
+        date_range: Data (início / fim)
+        start_at: Início
+        end_at: Fim
+        color: Cor
+        number: Número
+        description: Descrição
+        president_id: Presidente
+        secretary_id: Secretário
+        address: Endereço
+        location: Local
+        situation: Situação
+        forum_id: Forum
+

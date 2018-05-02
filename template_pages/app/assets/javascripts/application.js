@@ -14,6 +14,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require rails-ujs
+//= require activestorage
+//= require moment
+//= require fullcalendar
+//= require fullcalendar/lang/pt-br
+//= require cocoon
 //= require turbolinks
 
 //= require pace/pace.min
@@ -45,6 +50,7 @@
 //= require jquery-sparkline/jquery.sparkline.min
 //= require skycons/skycons
 //= require bootstrap-datepicker/js/bootstrap-datepicker
+//= require bootstrap-daterangepicker/daterangepicker
 
 //= require pages
 
@@ -112,28 +118,28 @@ $(document).on("ready turbolinks:load", function(){
                 modalElem.children('.modal-dialog').addClass('modal-lg');
             }
         }
-    });
+  });
 
-    $('#btnStickUpSizeToggler').click(function() {
-      var size = $('input[name=stickup_toggler]:checked').val()
-      var modalElem = $('#myModal');
-      if (size == "mini") {
-        $('#modalStickUpSmall').modal('show')
-      } else {
-        $('#myModal').modal('show')
-        if (size == "default") {
-          modalElem.children('.modal-dialog').removeClass('modal-lg');
-        } else if (size == "full") {
-          modalElem.children('.modal-dialog').addClass('modal-lg');
-        }
+  $('#btnStickUpSizeToggler').click(function() {
+    var size = $('input[name=stickup_toggler]:checked').val()
+    var modalElem = $('#myModal');
+    if (size == "mini") {
+      $('#modalStickUpSmall').modal('show')
+    } else {
+      $('#myModal').modal('show')
+      if (size == "default") {
+        modalElem.children('.modal-dialog').removeClass('modal-lg');
+      } else if (size == "full") {
+        modalElem.children('.modal-dialog').addClass('modal-lg');
       }
-    });
+    }
+  });
 
-    // Only for fillin modals so that the backdrop action is still there
-    $('#modalFillIn').on('show.bs.modal', function(e) {
-        $('body').addClass('fill-in-modal');
-    });
-    $('#modalFillIn').on('hidden.bs.modal', function(e) {
-        $('body').removeClass('fill-in-modal');
-    });
+  // Only for fillin modals so that the backdrop action is still there
+  $('#modalFillIn').on('show.bs.modal', function(e) {
+      $('body').addClass('fill-in-modal');
+  });
+  $('#modalFillIn').on('hidden.bs.modal', function(e) {
+      $('body').removeClass('fill-in-modal');
+  });
 });

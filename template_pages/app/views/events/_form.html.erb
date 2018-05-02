@@ -1,0 +1,91 @@
+<div class="modal fade fill-in" id="eventForm" tabindex="-1" role="dialog" aria-labelledby="modalSlideUpLabel" aria-hidden="false">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content-wrapper">
+      <div class="modal-content">
+        <%= simple_form_for @event, remote: true, input_html: { id: "event_form" } do |f| %>
+          <div class="modal-header clearfix text-left">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+              <i class="pg-close fs-14"></i>
+            </button>
+            <h5>Nova reunião</h5>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-6">
+                <%= f.input :forum_id, collection: Forum.all %>
+              </div>
+              <div class="col-md-6">
+                <%= f.input :number %>
+              </div>
+              <div class="col-md-12">
+                <%= f.input :title %>
+              </div>
+              <div class="col-md-12">
+                <%= f.input :description, as: :text %>
+              </div>
+              <div class="col-md-12">
+                <%= f.input :date_range, input_html: { class: "form-control input-sm date-range-picker", id: "event_date_range" } %>
+                <%= f.input_field :start_at, as: :hidden, value: Date.today, class: 'form-control input-sm start_hidden' %>
+                <%= f.input_field :end_at, as: :hidden, value: Date.today, class: 'form-control input-sm end_hidden' %>
+              </div>
+
+              <div class="col-md-6">
+                <%= f.input :president_id, collection: User.all, label_method: :name, value_method: :id %>
+              </div>
+              <div class="col-md-6">
+                <%= f.input :secretary_id, collection: User.all, label_method: :name, value_method: :id %>
+              </div>
+
+              <div class="col-md-12">
+                <%= f.input :address %>
+              </div>
+              <div class="col-md-6">
+                <%= f.input :location %>
+              </div>
+              <div class="col-md-6">
+                <%= f.label :situation %>
+                <div class="radio radio-success">
+                  <%= collection_radio_buttons(:event, :situation, Event::SITUATION.collect { |x| [x, t(x)] }, :first, :last) do |b| %>
+                    <%= b.radio_button %>
+                    <%= b.label do %>
+                      <%= b.text %>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <%= f.input :color, as: :select, collection: [['Black','black'], ['Green','green'], ['Red','red']] %>
+              </div>
+            </div>
+            <div class="row">
+              <h3>Membros</h3>
+              <div class="col-md-12">
+                <%= f.association :users, collection: User.all, label_method: :name, value_method: :id %>
+              </div>
+            </div>
+            <div class="row">
+              <h3> Assuntos </h3>
+              <div id="subjects" >
+                <%= f.simple_fields_for :subjects do |subject| %>
+                  <%= render 'subject_fields', f: subject %>
+                <% end %>
+                <div class='links'>
+                  <%= link_to_add_association 'add subject', f, :subjects, class: 'btn btn-info' %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <h4 class="progress" style="display: none">Progress: <span class="progress_count"></span>%</h4>
+            <%= f.button :submit %>
+            <%= link_to 'Delete',
+                        @event,
+                        method: :delete,
+                        class: 'btn btn-danger',
+                        remote: true unless @event.new_record? %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

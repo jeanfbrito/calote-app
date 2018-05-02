@@ -1,0 +1,20 @@
+<div class="nested-fields row">
+  <div class="col-md-12">
+    <%= f.input :title %>
+  </div>
+  <div class="col-md-12">
+    <%= f.input :description %>
+  </div>
+  <div class="col-md-6">
+    <%= f.input :answerable %>
+  </div>
+  <div class="col-md-6">
+    <%= f.input :time %>
+  </div>
+  <div class="col-md-10">
+    <%= f.file_field :files, multiple: true, direct_upload: true, class: "subject-file" %>
+  </div>
+  <div class="col-md-2">
+    <%= link_to_remove_association "remover", f, class: 'btn btn-danger', title: 'remover assunto' %>
+  </div>
+</div>
