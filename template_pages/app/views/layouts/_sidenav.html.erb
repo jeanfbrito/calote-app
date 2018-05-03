@@ -24,7 +24,7 @@
           <span class="title">Reuniões</span>
           <span class=" arrow"></span>
         </a>
-        <span class="icon-thumbnail bg-success"><i class="fa fa-institution"></i></span>
+        <span class="icon-thumbnail bg-success"><i class="fa fa-clock-o"></i></span>
         <ul class="sub-menu">
           <li class="">
             <%= link_to "Calendário", events_path %>
@@ -35,6 +35,12 @@
             <span class="icon-thumbnail"><i class="fa fa-list"></i></span>
           </li>
         </ul>
+      </li>
+      <li>
+        <%= link_to forums_path do %>
+          <span class="title">Forum</span>
+        <% end %>
+        <span class="icon-thumbnail"><i class="fa fa-institution"></i></span>
       </li>
     </ul>
     <div class="clearfix"></div>

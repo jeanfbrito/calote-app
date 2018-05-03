@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      forum:
+        one: Forum
+        other: Forum
+    attributes:
+      forum:
+        name: Nome

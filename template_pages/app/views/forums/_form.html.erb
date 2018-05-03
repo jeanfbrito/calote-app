@@ -1,0 +1,25 @@
+<div class="modal fade slide-right" id="forumForm" tabindex="-1" role="dialog" aria-labelledby="modalSlideUpLabel" aria-hidden="false">
+  <div class="modal-dialog">
+    <div class="modal-content-wrapper">
+      <div class="modal-content">
+        <%= simple_form_for @forum, input_html: { id: "forum_form" } do |f| %>
+          <div class="modal-header clearfix text-left">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+              <i class="pg-close fs-14"></i>
+            </button>
+            <h3>Novo Forum</h3>
+          </div>
+          <div class="modal-body">
+            <%= f.input :name %>
+            <div class="m-t-20">
+              <%= f.submit "Salvar", class: 'btn btn-primary btn-block' %>
+              <button type="button" class="btn btn-default btn-block" data-dismiss="modal" aria-hidden="true">
+                Voltar
+              </button>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="content ">
+  <div class="container-fluid">
+    <div class="card card-default m-t-20">
+      <div class="card-header separator">
+        <div class="card-title">
+          <h3>Lista de Forum</h3>
+        </div>
+        <div class="card-controls">
+          <%= link_to "<i class='fa fa-plus'></i> Novo".html_safe, new_forum_path, remote: true, class: "btn btn-primary" %>
+        </div>
+      </div>
+      <div class="card-block p-t-10">
+        <table class="table table-hover table-condensed dataTable no-footer">
+          <thead>
+            <th>Nome</th>
+            <th class="actions">ações</th>
+          </thead>
+          <tbody>
+            <% @forums.each do |forum| %>
+              <tr>
+                <td><%= forum.name %></td>
+                <td class="actions">
+                  <div class="btn-group">
+                    <%= link_to "<i class='fa fa-pencil'></i>".html_safe, edit_forum_path(forum), remote: true , class: "btn btn-primary" %>
+                    <%= link_to "<i class='fa fa-trash-o'></i>".html_safe, forum, method: :delete, class: "btn btn-primary" %>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="remote_container"></div>
