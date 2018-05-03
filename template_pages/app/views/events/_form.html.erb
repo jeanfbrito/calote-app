@@ -64,12 +64,14 @@
                         <%= f.input :color, as: :select, collection: [['Preto','black'], ['Verde','green'], ['Vermelho','red']], wrapper_html: { class: 'form-group-default-select2' } %>
                       </div>
                       <div class="col-md-6">
-                        <%= link_to 'Excluir',
-                                    @event,
-                                    method: :delete,
-                                    class: 'btn btn-danger pull-right m-t-10',
-                                    remote: true unless @event.new_record? %>
-                        <%= f.button :submit, class: 'pull-right m-t-10 m-r-10' %>
+                        <% if current_user.id == @event.user_id %>
+                          <%= link_to 'Excluir',
+                                      @event,
+                                      method: :delete,
+                                      class: 'btn btn-danger pull-right m-t-10',
+                                      remote: true unless @event.new_record? %>
+                          <%= f.button :submit, class: 'pull-right m-t-10 m-r-10' %>
+                        <% end %>
                       </div>
                     </div>
                     <h4 class="progress" style="display: none">Progress: <span class="progress_count"></span>%</h4>
