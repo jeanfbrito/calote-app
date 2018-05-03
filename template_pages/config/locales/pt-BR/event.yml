@@ -1,4 +1,8 @@
 pt-BR:
+  event:
+    situation:
+      draft: Rascunho
+      confirmed: Confirmada
   activerecord:
     models:
       event:
@@ -15,8 +19,10 @@ pt-BR:
         description: Descrição
         president_id: Presidente
         secretary_id: Secretário
+        user_id: Autor/responsável
         address: Endereço
         location: Local
         situation: Situação
         forum_id: Forum
+        users: Membros
 

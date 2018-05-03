@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 2018_05_02_201043) do
     t.text "description"
     t.integer "president_id"
     t.integer "secretary_id"
+    t.integer "user_id"
     t.integer "forum_id"
     t.text "address"
     t.string "location"

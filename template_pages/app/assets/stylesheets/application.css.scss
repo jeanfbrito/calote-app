@@ -33,3 +33,17 @@
 .daterangepicker {
   z-index: 1050 !important;
 }
+
+.modal .modal-dialog.modal-event {
+  width: 90vw;
+  max-width: 90vw;
+}
+
+.radio.radio-success label {
+  display: inline;
+}
+
+h4.sub-title {
+  display: block;
+  width: 100%;
+}

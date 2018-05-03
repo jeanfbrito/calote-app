@@ -9,6 +9,7 @@ class CreateEvents < ActiveRecord::Migration[5.2]
       t.text :description
       t.integer :president_id
       t.integer :secretary_id
+      t.integer :user_id
       t.integer :forum_id
       t.text :address
       t.string :location

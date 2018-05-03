@@ -9,7 +9,7 @@ class EventsController < ApplicationController
   end
 
   def new
-    @event = Event.new
+    @event = Event.new(user_id: current_user.id)
   end
 
   def edit
@@ -38,7 +38,7 @@ class EventsController < ApplicationController
         :date_range, :color, :title, :start_at, :situation,
         :end_at, :color, :number, :description, :location,
         :president_id, :secretary_id, :forum_id, :address,
-        user_ids: [],
+        :user_id, user_ids: [],
         subjects_attributes: [:id, :description, :title, :answerable, :time, :_destroy, files: [] ])
     end
 end
