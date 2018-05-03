@@ -1,0 +1,33 @@
+<div class="content ">
+  <div class="container-fluid">
+    <div class="card card-default m-t-20">
+      <div class="card-header separator">
+        <div class="card-title">
+          <h3>Minhas reuniões</h3>
+        </div>
+      </div>
+      <div class="card-block p-t-10">
+        <table class="table table-hover table-condensed dataTable no-footer">
+          <thead>
+            <th>Título</th>
+            <th>Data</th>
+            <th class="actions">ações</th>
+          </thead>
+          <tbody>
+            <% @events.each do |event| %>
+              <tr>
+                <td><%= event.title %></td>
+                <td><%= l(event.start_at) %></td>
+                <td class="actions">
+                  <div class="btn-group">
+                    <%= link_to "<span>Visualizar</span>".html_safe, event, class: "btn btn-primary btn-cons btn-animated from-top fa fa-eye" %>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

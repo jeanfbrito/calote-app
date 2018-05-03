@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   root "event#index"
   resources :events
   resources :forums
+  get "user/my_events", to: "users#events"
 end
