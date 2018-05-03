@@ -20,42 +20,19 @@
     <!-- BEGIN SIDEBAR MENU ITEMS-->
     <ul class="menu-items">
       <li class="m-t-30">
-        <%= link_to root_path, class: "detailed" do %>
-          <span class="title">Dashboard</span>
-          <span class="details">234 notifications</span>
-        <% end %>
-        <span class="icon-thumbnail bg-success"><i class="pg-mail"></i></span>
-      </li>
-      <li>
-        <%= link_to events_path do %>
-          <span class="title">Reunião</span>
-        <% end %>
-        <span class="icon-thumbnail"><i class="fa fa-calendar"></i></span>
-      </li>
-      <li class="">
-        <%= link_to inputs_path do %>
-          <span class="title">Inputs</span>
-        <% end %>
-        <span class="icon-thumbnail "><i class="pg-social"></i></span>
-      </li>
-      <li class="">
         <a href="javascript:;">
-          <span class="title">Page 3</span>
+          <span class="title">Reuniões</span>
           <span class=" arrow"></span>
         </a>
-        <span class="icon-thumbnail"><i class="pg-grid"></i></span>
+        <span class="icon-thumbnail bg-success"><i class="fa fa-institution"></i></span>
         <ul class="sub-menu">
           <li class="">
-            <a href="#">Sub Page 1</a>
-            <span class="icon-thumbnail">sp</span>
+            <%= link_to "Calendário", events_path %>
+            <span class="icon-thumbnail"><i class="fa fa-calendar"></i></span>
           </li>
           <li class="">
-            <a href="#">Sub Page 2</a>
-            <span class="icon-thumbnail">sp</span>
-          </li>
-          <li class="">
-            <a href="#">Sub Page 3</a>
-            <span class="icon-thumbnail">sp</span>
+            <a href="#">Minhas reuniões</a>
+            <span class="icon-thumbnail"><i class="fa fa-list"></i></span>
           </li>
         </ul>
       </li>

@@ -1,11 +1,83 @@
 <div class="content ">
   <div class="container-fluid">
-    <h3>Exemplo de como criar link do arquivo</h3>
-    <% @event.subjects.each do |subject| %>
-      <% subject.files.each do |file| %>
-        <%= file.filename %>
-        <%= link_to file.filename, url_for(file) %>
-      <% end %>
-    <% end %>
+    <div class="card card-default m-t-20">
+      <div class="card-header separator">
+        <div class="card-title">
+          <h3><%= @event.number %> - <%= @event.title %></h3>
+        </div>
+        <div class="card-controls">
+          <%= link_to "Confirmar presença", "#", class: "btn btn-success" %>
+          <%= link_to "Voltar", "#", class: "btn btn-default" %>
+        </div>
+      </div>
+      <div class="card-block p-t-10">
+        <p><strong>descrição:</strong> <%= @event.description %></p>
+        <p><strong>Data:</strong> <%= l(@event.start_at) %> - <%= l(@event.end_at) %></p>
+        <p><strong>Presidente:</strong> <%= @event.president.try(:name) %></p>
+        <p><strong>Secretário:</strong> <%= @event.secretary.try(:name) %></p>
+        <p><strong>Endereço:</strong> <%= @event.address %></p>
+        <p><strong>Local:</strong> <%= @event.location %></p>
+        <p><strong>Forum:</strong> <%= @event.forum.try(:name) %></p>
+        <p><strong>Situação:</strong> <%= t("event.situation.#{@event.situation}") %></p>
+      </div>
+      <div class="card-header separator">
+        <div class="card-title">
+          <h3>Membros</h3>
+        </div>
+      </div>
+      <div class="card-block">
+        <table class="table table-hover table-condensed dataTable no-footer">
+          <thead>
+            <th>Nome</th>
+            <th>email</th>
+            <th>confirmação</th>
+          </thead>
+          <tbody>
+            <% @event.users.each do |user| %>
+              <tr>
+                <td><%= user.name %></td>
+                <td><%= user.email %></td>
+                <td>TODO</td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-header separator">
+        <div class="card-title">
+          <h3>Assuntos da reunião</h3>
+        </div>
+      </div>
+      <div class="card-block">
+        <table class="table table-hover table-condensed dataTable no-footer">
+          <thead>
+            <th>Título</th>
+            <th>Responsável</th>
+            <th>Duração</th>
+            <th>Descrição</th>
+          </thead>
+          <tbody>
+            <% @event.subjects.each do |subject| %>
+              <tr>
+                <td><%= subject.title %></td>
+                <td><%= subject.answerable %></td>
+                <td><%= subject.time %> minutos</td>
+                <td><%= subject.description %></td>
+              </tr>
+              <% subject.files.each do |file| %>
+                <tr>
+                  <td colspan="2">
+                    <%= file.filename %>
+                  </td>
+                  <td colspan="2">
+                    <%= link_to file.filename, url_for(file) %>
+                  </td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>

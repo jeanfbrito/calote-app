@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Olá, nova reunião agendada</h1>
+    <h3><%= @event.title %></h3>
+    <p>
+      <%= @event.description %>
+      <br />
+      <%= @event.start_at %>
+    </p>
+    <p>
+      <%= @event.address %>
+    </p>
+    <p>
+      <%= link_to "Confirmar presença na reunião", event_url(@event) %>
+    </p>
+  </body>
+</html>
