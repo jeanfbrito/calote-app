@@ -11,6 +11,7 @@
           <thead>
             <th>Título</th>
             <th>Data</th>
+            <th>Presença</th>
             <th class="actions">ações</th>
           </thead>
           <tbody>
@@ -18,9 +19,11 @@
               <tr>
                 <td><%= event.title %></td>
                 <td><%= l(event.start_at) %></td>
+                <td><%= confirmed_bagde( event.confirmed?(current_user.id) ) %></td>
                 <td class="actions">
                   <div class="btn-group">
                     <%= link_to "<span>Visualizar</span>".html_safe, event, class: "btn btn-primary btn-cons btn-animated from-top fa fa-eye" %>
+
                   </div>
                 </td>
               </tr>

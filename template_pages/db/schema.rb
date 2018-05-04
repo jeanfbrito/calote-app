@@ -51,9 +51,9 @@ ActiveRecord::Schema.define(version: 2018_05_03_170805) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "events_users", id: false, force: :cascade do |t|
-    t.integer "event_id", null: false
-    t.integer "user_id", null: false
+  create_table "events_users", force: :cascade do |t|
+    t.integer "event_id"
+    t.integer "user_id"
     t.boolean "confirmed", default: false
     t.index ["event_id", "user_id"], name: "index_events_users_on_event_id_and_user_id"
   end

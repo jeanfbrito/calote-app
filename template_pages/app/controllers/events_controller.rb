@@ -9,7 +9,7 @@ class EventsController < ApplicationController
   end
 
   def new
-    @event = Event.new(user_id: current_user.id)
+    @event = Event.new(user_id: current_user.id, situation: "confirmed")
   end
 
   def edit
@@ -26,6 +26,16 @@ class EventsController < ApplicationController
 
   def destroy
     @event.destroy
+  end
+
+  def confirm_presence
+    @event_user = EventsUser.find_by(user_id: current_user.id, event_id: params[:event_id])
+    if @event_user.blank?
+      redirect_to events_path, notice: 'Evento não encontrado.'
+    else
+      @event_user.confirm!
+      redirect_to event_path(@event_user.event), notice: 'Presença confirmada'
+    end
   end
 
   private

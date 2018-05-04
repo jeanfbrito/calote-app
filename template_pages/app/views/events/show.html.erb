@@ -6,13 +6,14 @@
           <h3><%= @event.number %> - <%= @event.title %></h3>
         </div>
         <div class="card-controls">
-          <%= link_to "Confirmar presença", "#", class: "btn btn-success" %>
+          <%= link_to "Confirmar presença", confirm_presence_events_path(event_id: @event.id), class: "btn btn-success" unless @event.confirmed?(current_user.id)%>
           <%= link_to "Voltar", user_my_events_path, class: "btn btn-default" %>
         </div>
       </div>
       <div class="card-block p-t-10">
         <p><strong>descrição:</strong> <%= @event.description %></p>
         <p><strong>Data:</strong> <%= l(@event.start_at) %> - <%= l(@event.end_at) %></p>
+        <p><strong>Duração:</strong> <%= @event.subjects.sum(&:time) %> minutos </p>
         <p><strong>Presidente:</strong> <%= @event.president.try(:name) %></p>
         <p><strong>Secretário:</strong> <%= @event.secretary.try(:name) %></p>
         <p><strong>Endereço:</strong> <%= @event.address %></p>
@@ -33,11 +34,11 @@
             <th>confirmação</th>
           </thead>
           <tbody>
-            <% @event.users.each do |user| %>
+            <% @event.events_users.each do |event_user| %>
               <tr>
-                <td><%= user.name %></td>
-                <td><%= user.email %></td>
-                <td>TODO</td>
+                <td><%= event_user.user.name %></td>
+                <td><%= event_user.user.email %></td>
+                <td><%= confirmed_bagde(event_user.confirmed) %></td>
               </tr>
             <% end %>
           </tbody>
@@ -64,16 +65,17 @@
                 <td><%= subject.time %> minutos</td>
                 <td><%= subject.description %></td>
               </tr>
-              <% subject.files.each do |file| %>
                 <tr>
-                  <td colspan="2">
-                    <%= file.filename %>
+                  <td class="top-text">
+                    <strong>Anexos:</strong>
                   </td>
-                  <td colspan="2">
-                    <%= link_to file.filename, url_for(file) %>
+                  <td colspan="3">
+                    <% subject.files.each do |file| %>
+                      <%= link_to file.filename, url_for(file) %>
+                      <br/>
+                    <% end %>
                   </td>
                 </tr>
-              <% end %>
             <% end %>
           </tbody>
         </table>

@@ -20,7 +20,7 @@
                         <%= f.input :forum_id, collection: Forum.all, wrapper_html: { class: 'form-group-default-select2' } %>
                       </div>
                       <div class="col-md-6">
-                        <%= f.input :number, readonly: true %>
+                        <%= f.input :number, readonly: true, placeholder: "número será preenchido após salvar" %>
                       </div>
                       <div class="col-md-12">
                         <%= f.input :title %>

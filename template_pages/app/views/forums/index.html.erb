@@ -13,12 +13,14 @@
         <table class="table table-hover table-condensed dataTable no-footer">
           <thead>
             <th>Nome</th>
+            <th>Número de reuniões</th>
             <th class="actions">ações</th>
           </thead>
           <tbody>
             <% @forums.each do |forum| %>
               <tr>
                 <td><%= forum.name %></td>
+                <td><%= forum.events.count %></td>
                 <td class="actions">
                   <div class="btn-group">
                     <%= link_to "<i class='fa fa-pencil'></i>".html_safe, edit_forum_path(forum), remote: true , class: "btn btn-primary" %>

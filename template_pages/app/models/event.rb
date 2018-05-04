@@ -1,12 +1,13 @@
 class Event < ApplicationRecord
   belongs_to :forum
-  belongs_to :president, class_name: 'User', foreign_key: :president_id
-  belongs_to :secretary, class_name: 'User', foreign_key: :secretary_id
+  belongs_to :president, class_name: 'User', foreign_key: :president_id, optional: true
+  belongs_to :secretary, class_name: 'User', foreign_key: :secretary_id, optional: true
   belongs_to :user
 
-  has_and_belongs_to_many :users
+  has_many :events_users, dependent: :destroy
+  has_many :users, through: :events_users
 
-  has_many :subjects, inverse_of: :event
+  has_many :subjects, inverse_of: :event, dependent: :destroy
   accepts_nested_attributes_for :subjects,
                                 reject_if: :all_blank,
                                 allow_destroy: true
@@ -21,19 +22,30 @@ class Event < ApplicationRecord
     .distinct
   }
 
-  validates :title, presence: true
+  validates :title, :forum_id, presence: true
   attr_accessor :date_range
+
+  before_save :set_number
+  after_create :send_mail
 
   def all_day_event?
     self.start_at == self.start_at.midnight && self.end_at == self.end_at.midnight ? true : false
   end
 
-  def initialize(*args)
-    super
-    self.number = Event.last.try(:id).to_i + 1
+  def set_number
+    return unless self.number.blank?
+    self.number = forum.events.count + 1
+  end
+
+  def send_mail
+    EventMailer.notification(self).deliver_now if users.any?
   end
 
   def email_title
     "[Nova reunião] - #{title}"
+  end
+
+  def confirmed?(user_id)
+    !!events_users.find_by(user_id: user_id).try(:confirmed)
   end
 end

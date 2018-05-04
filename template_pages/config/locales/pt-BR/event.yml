@@ -1,5 +1,8 @@
 pt-BR:
   event:
+    confirmed:
+      "true": Confirmado
+      "false": Não confirmado
     situation:
       draft: Rascunho
       confirmed: Confirmada

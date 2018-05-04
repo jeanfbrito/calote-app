@@ -76,13 +76,3 @@ $(document).on('shown.bs.modal', "#eventForm", function () {
   $('select').select2({ dropdownParent: $("#eventForm") });
   date_range_picker();
 });
-
-$(document).on("turbolinks:load", function(){
- $("#event_form").on("direct-uploads:start", function(){
-    $("h4.progress").show();
- });
-
- $(".subject-file").on("direct-upload:progress", function(event){
-    $("h4.progress span.progress_count").html(event.detail.progress);
- });
-});

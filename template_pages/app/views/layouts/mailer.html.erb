@@ -3,10 +3,175 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <style>
+      body {
+        color: #626262;
+        font-family: "Segoe UI", Arial, sans-serif;
+        font-size: 14px;
+      }
+
+      h3 {
+        color: #626262;
+        font-family: "Segoe UI", Arial, sans-serif;
+        font-size: 16px;
+        font-weight: bolder;
+      }
       /* Email styles need to be inline */
+      .card {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        border-radius: 1px;
+        -webkit-border-radius: 1px;
+        -moz-border-radius: 1px;
+        -webkit-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+        position: relative;
+        background-color: #fff;
+        margin-bottom: 20px;
+        width: 100%;
+      }
+      .card .card-header {
+        background: transparent;
+        border-radius: 0px;
+        border-bottom: 0px;
+        padding: 20px 20px 7px 20px;
+        position: relative;
+        z-index: 3;
+        min-height: 48px;
+      }
+      .card .card-header.separator:after {
+        content: "";
+        height: 1px;
+        background: rgba(0, 0, 0, 0.08);
+        left: 16px;
+        right: 16px;
+        position: absolute;
+        bottom: 0;
+      }
+      .card .card-header + .card-block {
+        padding-top: 0;
+      }
+      .card .card-header .card-title {
+        font-family: 'Montserrat';
+        text-transform: uppercase;
+        display: inline-block;
+        letter-spacing: 0.06em;
+        font-size: 10.5px;
+        font-weight: 500;
+        margin: 0;
+        padding: 0;
+        line-height: normal;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-text-stroke: 0px;
+        filter: alpha(opacity=40);
+        -webkit-transition: opacity 0.3s ease;
+        transition: opacity 0.3s ease;
+      }
+      .card.card-default {
+        border: 1px solid rgba(0, 0, 0, 0.07);
+      }
+      .card.card-default > .card-header {
+        color: #333;
+      }
+      .card .card-block {
+        padding: 20px;
+      }
+      .card .card-block .title {
+        margin-top: 0px;
+      }
+      .card .card-block.scrollable {
+        margin-bottom: 20px;
+      }
+
+      .table {
+        width: 100%;
+        margin-bottom: 0;
+        margin-top: 5px;
+      }
+      .table thead tr th {
+        text-transform: uppercase;
+        font-weight: 500;
+        font-family: 'Montserrat';
+        font-size: 10.5px;
+        letter-spacing: 0.06em;
+        padding-top: 14px;
+        padding-bottom: 14px;
+        vertical-align: middle;
+        border-bottom: 1px solid rgba(230, 230, 230, 0.7);
+        color: rgba(44, 44, 44, 0.35);
+        border-top: none;
+        text-align: left;
+      }
+      .table thead tr th:first-child {
+        padding-left: 18px !important;
+      }
+      .table tbody tr td {
+        background: #fff;
+        border-bottom: 1px solid rgba(230, 230, 230, 0.7);
+        border-top: 0px;
+        padding: 20px;
+        font-size: 13.5px;
+      }
+
+      .table.table-condensed {
+        table-layout: fixed;
+      }
+      .table.table-condensed thead tr th {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+      .table.table-condensed tbody tr td {
+        padding-top: 12px;
+        padding-bottom: 12px;
+      }
+      .table.table-condensed thead tr th,
+      .table.table-condensed tbody tr td,
+      .table.table-condensed tbody tr td *:not(.dropdown-default) {
+        white-space: nowrap;
+        vertical-align: middle;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .btn {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        font-weight: normal;
+        letter-spacing: 0.01em;
+        -webkit-font-smoothing: antialiased;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        -webkit-font-feature-settings: "kern" 1;
+        -moz-font-feature-settings: "kern" 1;
+        margin-bottom: 0;
+        border: 1px solid #f0f0f0;
+        text-align: center;
+        vertical-align: middle;
+        cursor: pointer;
+        border-radius: 3px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        color: #626262;
+        background-color: #fff;
+        text-shadow: none;
+        box-shadow: none;
+        line-height: 21px;
+        position: relative;
+        transition: color 0.1s linear 0s, background-color 0.1s linear 0s, opacity 0.2s linear 0s !important;
+        padding: 10px 17px;
+        text-decoration: none;
+      }
+      .btn-primary,
+      .btn-primary:focus {
+        color: #fff;
+        background-color: #6d5cae;
+        border-color: #6d5cae;
+      }
+      .m-t-30 {
+        margin-top: 30px;
+      }
     </style>
   </head>
-
   <body>
     <%= yield %>
   </body>

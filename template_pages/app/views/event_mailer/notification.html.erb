@@ -1,21 +1,67 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <h1>Olá, nova reunião agendada</h1>
-    <h3><%= @event.title %></h3>
-    <p>
-      <%= @event.description %>
-      <br />
-      <%= @event.start_at %>
-    </p>
-    <p>
-      <%= @event.address %>
-    </p>
-    <p>
-      <%= link_to "Confirmar presença na reunião", event_url(@event) %>
-    </p>
-  </body>
-</html>
+<div class="card card-default m-t-20">
+  <div class="card-header separator">
+    <div class="card-title">
+      <h3><%= @event.number %> - <%= @event.title %></h3>
+    </div>
+  </div>
+  <div class="card-block p-t-10">
+    <p><strong>descrição:</strong> <%= @event.description %></p>
+    <p><strong>Data:</strong> <%= l(@event.start_at) %> - <%= l(@event.end_at) %></p>
+    <p><strong>Duração:</strong> <%= @event.subjects.sum(&:time) %> minutos </p>
+    <p><strong>Presidente:</strong> <%= @event.president.try(:name) %></p>
+    <p><strong>Secretário:</strong> <%= @event.secretary.try(:name) %></p>
+    <p><strong>Endereço:</strong> <%= @event.address %></p>
+    <p><strong>Local:</strong> <%= @event.location %></p>
+    <p><strong>Forum:</strong> <%= @event.forum.try(:name) %></p>
+    <p><strong>Situação:</strong> <%= t("event.situation.#{@event.situation}") %></p>
+    <p class="m-t-30"><%= link_to "Confirmar presença na reunião", event_url(@event), class: "btn btn-primary" %></p>
+  </div>
+  <div class="card-header separator">
+    <div class="card-title">
+      <h3>Participantes da reunião</h3>
+    </div>
+  </div>
+  <div class="card-block">
+    <table class="table table-condensed no-footer">
+      <thead>
+        <th>Nome</th>
+        <th>email</th>
+        <th>confirmação</th>
+      </thead>
+      <tbody>
+        <% @event.users.each do |user| %>
+          <tr>
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+            <td>TODO</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="card-header separator">
+    <div class="card-title">
+      <h3>Assuntos da reunião</h3>
+    </div>
+  </div>
+  <div class="card-block">
+    <table class="table table-hover table-condensed dataTable no-footer">
+      <thead>
+        <th>Título</th>
+        <th>Responsável</th>
+        <th>Duração</th>
+        <th>Descrição</th>
+      </thead>
+      <tbody>
+        <% @event.subjects.each do |subject| %>
+          <tr>
+            <td><%= subject.title %></td>
+            <td><%= subject.answerable %></td>
+            <td><%= subject.time %> minutos</td>
+            <td><%= subject.description %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
