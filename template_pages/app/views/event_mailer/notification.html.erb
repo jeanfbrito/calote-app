@@ -25,15 +25,15 @@
     <table class="table table-condensed no-footer">
       <thead>
         <th>Nome</th>
-        <th>email</th>
-        <th>confirmação</th>
+        <th>E-mail</th>
+        <th>Presença</th>
       </thead>
       <tbody>
-        <% @event.users.each do |user| %>
+        <% @event.events_users.each do |event_user| %>
           <tr>
-            <td><%= user.name %></td>
-            <td><%= user.email %></td>
-            <td>TODO</td>
+            <td><%= event_user.user.name %></td>
+            <td><%= event_user.user.email %></td>
+            <td><%= t("event.confirmed.#{event_user.confirmed}") %></td>
           </tr>
         <% end %>
       </tbody>
