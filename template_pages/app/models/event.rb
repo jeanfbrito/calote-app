@@ -34,7 +34,8 @@ class Event < ApplicationRecord
 
   def set_number
     return unless self.number.blank?
-    self.number = forum.events.count + 1
+    self.forum.increment!(:number)
+    self.number = self.forum.number
   end
 
   def send_mail

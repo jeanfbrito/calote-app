@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 2018_05_03_170805) do
 
   create_table "forums", force: :cascade do |t|
     t.string "name"
+    t.integer "number", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
