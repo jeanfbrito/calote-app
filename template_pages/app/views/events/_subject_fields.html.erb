@@ -6,7 +6,7 @@
     <%= f.input :description %>
   </div>
   <div class="col-md-6">
-    <%= f.input :answerable %>
+    <%= f.input :user_id, collection: User.all, label_method: :name, value_method: :id, wrapper_html: { class: 'form-group-default-select2' } %>
   </div>
   <div class="col-md-6">
     <%= f.input :time %>

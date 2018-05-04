@@ -8,7 +8,8 @@ pt-BR:
       subject:
         title: Titulo
         description: Descrição
-        answerable: Responsável
+        user: Responsável
+        user_id: Responsável
         time: Tempo(em minutos)
 
 

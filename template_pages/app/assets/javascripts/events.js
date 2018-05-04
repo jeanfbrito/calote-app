@@ -74,5 +74,21 @@ $(document).on('turbolinks:load', initialize_calendar);
 
 $(document).on('shown.bs.modal', "#eventForm", function () {
   $('select').select2({ dropdownParent: $("#eventForm") });
+
   date_range_picker();
+
+  $('select.trigger-change').on('change', function(){
+    var user_ids = $("#event_user_ids").val() || [];
+    user_ids.push( $(this).val() );
+    $("#event_user_ids").val(user_ids).trigger('change');
+  });
+
+  $('#subjects').on('cocoon:after-insert', function(e, added_task) {
+    added_task.find('select').select2({ dropdownParent: $("#eventForm") });
+  });
+
 });
+
+
+
+

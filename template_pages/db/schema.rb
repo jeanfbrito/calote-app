@@ -68,9 +68,9 @@ ActiveRecord::Schema.define(version: 2018_05_03_170805) do
   create_table "subjects", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.string "answerable"
     t.integer "time"
     t.integer "event_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

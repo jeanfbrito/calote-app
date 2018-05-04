@@ -61,7 +61,7 @@
             <% @event.subjects.each do |subject| %>
               <tr>
                 <td><%= subject.title %></td>
-                <td><%= subject.answerable %></td>
+                <td><%= subject.user.try(:name) %></td>
                 <td><%= subject.time %> minutos</td>
                 <td><%= subject.description %></td>
               </tr>

@@ -35,10 +35,10 @@
                       </div>
 
                       <div class="col-md-6">
-                        <%= f.input :president_id, collection: User.all, label_method: :name, value_method: :id, wrapper_html: { class: 'form-group-default-select2' } %>
+                        <%= f.input :president_id, collection: User.all, label_method: :name, value_method: :id, wrapper_html: { class: 'form-group-default-select2' }, input_html: { class: 'trigger-change'} %>
                       </div>
                       <div class="col-md-6">
-                        <%= f.input :secretary_id, collection: User.all, label_method: :name, value_method: :id, wrapper_html: { class: 'form-group-default-select2' } %>
+                        <%= f.input :secretary_id, collection: User.all, label_method: :name, value_method: :id, wrapper_html: { class: 'form-group-default-select2' }, input_html: { class: 'trigger-change'} %>
                       </div>
 
                       <div class="col-md-12">
