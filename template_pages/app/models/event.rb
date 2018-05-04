@@ -41,10 +41,6 @@ class Event < ApplicationRecord
     EventMailer.notification(self).deliver_now if users.any?
   end
 
-  def email_title
-    "[Nova reunião] - #{title}"
-  end
-
   def confirmed?(user_id)
     !!events_users.find_by(user_id: user_id).try(:confirmed)
   end
