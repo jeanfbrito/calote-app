@@ -154,10 +154,12 @@
                         </div>
                       </div>
                     </div>
-                    <p class="small hinted-text inline p-l-10 no-margin col-middle">
-                      *Clique no botão atualizar após adicionar os arquivos.
-                    </p>
-                    <%= f.button :submit, class: 'pull-right' %>
+                    <% if @event.subject_has_user?(current_user) %>
+                      <p class="small hinted-text inline p-l-10 no-margin col-middle">
+                        *Clique no botão atualizar após adicionar os arquivos.
+                      </p>
+                      <%= f.button :submit, class: 'pull-right' %>
+                    <% end %>
                   </div>
                 </div>
               </div>
