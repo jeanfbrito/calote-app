@@ -49,6 +49,6 @@ class EventsController < ApplicationController
         :end_at, :color, :number, :description, :location,
         :president_id, :secretary_id, :forum_id, :address,
         :user_id, user_ids: [],
-        subjects_attributes: [:id, :description, :title, :user_id, :time, :_destroy, files: [] ])
+        subjects_attributes: [:id, :description, :title, :time, :_destroy, files: [], user_ids: [] ])
     end
 end

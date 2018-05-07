@@ -1,0 +1,162 @@
+<div class="modal fade fill-in" id="eventForm" tabindex="-1" role="dialog" aria-labelledby="modalSlideUpLabel" aria-hidden="false">
+  <div class="modal-dialog modal-event">
+    <div class="modal-content-wrapper">
+      <div class="modal-content">
+        <%= simple_form_for @event, remote: true, input_html: { id: "event_form" } do |f| %>
+          <%= f.input :user_id, as: :hidden %>
+          <div class="modal-header clearfix text-left">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+              <i class="pg-close fs-14"></i>
+            </button>
+            <h3>Reunião: <%= @event.number %> - <%= @event.title %></h3>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="card card-default">
+                  <div class="card-block">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group form-group-default">
+                          <label>Forum</label>
+                          <span class="form-description"><%= @event.forum.name %></span>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group form-group-default">
+                          <%= f.label :number %>
+                          <span class="form-description"><%= @event.number %></span>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="form-group form-group-default">
+                          <%= f.label :title %>
+                          <span class="form-description"><%= @event.title %></span>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="form-group form-group-default">
+                          <%= f.label :description %>
+                          <span class="form-description"><%= @event.description %></span>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="form-group form-group-default">
+                          <%= f.label :date_range %>
+                          <span class="form-description"><%= l(@event.start_at) %> - <%= l(@event.end_at) %></span>
+                        </div>
+                      </div>
+
+                      <div class="col-md-6">
+                        <div class="form-group form-group-default">
+                          <%= f.label :president_id %>
+                          <span class="form-description"><%= @event.president.try(:name) %></span>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group form-group-default">
+                          <%= f.label :secretary_id %>
+                          <span class="form-description"><%= @event.secretary.try(:name) %></span>
+                        </div>
+                      </div>
+
+                      <div class="col-md-12">
+                        <div class="form-group form-group-default">
+                          <%= f.label :address %>
+                          <span class="form-description"><%= @event.address %></span>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group form-group-default">
+                          <%= f.label :location %>
+                          <span class="form-description"><%= @event.location %></span>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group form-group-default">
+                          <%= f.label :situation %>
+                          <span class="form-description"><%= t("event.situation.#{@event.situation}") %></span>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="form-group form-group-default">
+                          <label>Participantes da reunião</label>
+                          <span class="form-description">
+                            <%= @event.users.map{ |user| "<span class='badge badge-default'>#{user.name}</span>" }.join(" ").html_safe %>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="card card-default">
+                  <div class="card-block">
+                    <div class="row">
+                      <h4 class="sub-title"> Assuntos da reunião </h4>
+
+                      <div class="col-md-12">
+                        <div class="card-group horizontal" id="accordion" role="tablist" aria-multiselectable="true">
+                          <%= f.simple_fields_for :subjects do |subject| %>
+                            <div class="card card-default m-b-0">
+                            <div class="card-header " role="tab" id="headingOne">
+                              <h4 class="card-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#subject<%= subject.object.id %>" aria-expanded="false" aria-controls="subject<%= subject.object.id %>" class="collapsed">
+                                  <%= subject.object.title %> <small>(<%= subject.object.time %> min)</small>
+                                </a>
+                              </h4>
+                            </div>
+                            <div id="subject<%= subject.object.id %>" class="collapse" role="tabcard" aria-labelledby="headingOne" aria-expanded="false">
+                              <div class="card-block p-t-0">
+                                <div class="col-md-12 p-0">
+                                  <div class="form-group form-group-default">
+                                    <%= subject.label :users %>
+                                    <span class="form-description">
+                                      <%= subject.object.users.map{ |user| "<span class='badge badge-default'>#{user.name}</span>" }.join(" ").html_safe %>
+                                    </span>
+                                  </div>
+                                </div>
+                                <div class="col-md-12 p-0">
+                                  <div class="form-group form-group-default">
+                                    <%= subject.label :description %>
+                                    <span class="form-description"><%= subject.object.description %></span>
+                                  </div>
+                                </div>
+                                <div class="col-md-12 p-0">
+                                  <div class="form-group form-group-default">
+                                    <%= subject.label :files %>
+                                    <ul>
+                                      <% subject.object.files.each do |subject_file| %>
+                                        <li> <%= link_to subject_file.filename, url_for(subject_file) %> </li>
+                                      <% end %>
+                                    </ul>
+                                  </div>
+                                </div>
+                                <% if subject.object.has_user?(current_user) %>
+                                  <div class="col-md-12">
+                                    <%= subject.file_field :files, multiple: true, direct_upload: true, class: "subject-file" %>
+                                  </div>
+                                <% end %>
+                              </div>
+                            </div>
+                            </div>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                    <p class="small hinted-text inline p-l-10 no-margin col-middle">
+                      *Clique no botão atualizar após adicionar os arquivos.
+                    </p>
+                    <%= f.button :submit, class: 'pull-right' %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

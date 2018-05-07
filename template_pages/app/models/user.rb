@@ -6,4 +6,6 @@ class User < ApplicationRecord
 
   has_many :events_users
   has_many :events, through: :events_users
+
+  has_and_belongs_to_many :subjects
 end

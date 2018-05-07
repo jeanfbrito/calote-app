@@ -56,3 +56,8 @@ td.actions {
 .top-text {
   vertical-align: text-top !important;
 }
+
+.form-group.form-group-default span.form-description {
+  display: block;
+  min-height: 20px;
+}

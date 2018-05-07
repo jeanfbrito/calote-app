@@ -39,10 +39,15 @@ class Event < ApplicationRecord
   end
 
   def send_mail
-    EventMailer.notification(self).deliver_now if users.any?
+    return unless users.any? && situation == "confirmed"
+    EventMailer.notification(self).deliver_now
   end
 
   def confirmed?(user_id)
     !!events_users.find_by(user_id: user_id).try(:confirmed)
+  end
+
+  def subject_has_user?(user)
+    subjects.map{|sub| sub.has_user?(user) }.include?(true)
   end
 end

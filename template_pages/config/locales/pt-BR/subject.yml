@@ -8,8 +8,8 @@ pt-BR:
       subject:
         title: Titulo
         description: Descrição
-        user: Responsável
-        user_id: Responsável
+        users: Responsáveis
+        files: Arquivos anexados
         time: Tempo(em minutos)
 
 

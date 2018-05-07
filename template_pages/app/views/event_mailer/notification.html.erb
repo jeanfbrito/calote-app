@@ -48,7 +48,7 @@
     <table class="table table-hover table-condensed dataTable no-footer">
       <thead>
         <th>Título</th>
-        <th>Responsável</th>
+        <th>Responsáveis</th>
         <th>Duração</th>
         <th>Descrição</th>
       </thead>
@@ -56,7 +56,7 @@
         <% @event.subjects.each do |subject| %>
           <tr>
             <td><%= subject.title %></td>
-            <td><%= subject.user.try(:name) %></td>
+            <td><%= subject.users.map(&:name).join(", ") %></td>
             <td><%= subject.time %> minutos</td>
             <td><%= subject.description %></td>
           </tr>
