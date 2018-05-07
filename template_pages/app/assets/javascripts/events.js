@@ -80,20 +80,13 @@ $(document).on('shown.bs.modal', "#eventForm", function () {
   $('select.trigger-change').on('select2:selecting', function(e){
     var user_ids = $("#event_user_ids").val() || [];
     var this_value = e.params.args.data.id;
-
-    if ( this_value === "" ){
-      user_ids.pop( e.currentTarget.value );
-    }else{
-      user_ids.push( this_value );
-    }
-
+    user_ids.push( this_value );
     $("#event_user_ids").val(user_ids).trigger('change');
   });
 
   $('#subjects').on('cocoon:after-insert', function(e, added_task) {
     added_task.find('select').select2({ dropdownParent: $("#eventForm") });
   });
-
 });
 
 
