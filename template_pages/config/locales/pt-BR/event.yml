@@ -22,7 +22,7 @@ pt-BR:
         description: Descrição
         president_id: Presidente
         secretary_id: Secretário
-        user_id: Autor/responsável
+        user_id: Reunião criada por
         address: Endereço
         location: Local
         situation: Situação

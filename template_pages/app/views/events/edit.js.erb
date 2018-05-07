@@ -1,6 +1,6 @@
 <% if @event.user_id == current_user.id %>
   $('#remote_container').html('<%= j render "form" %>');
 <% else %>
-  $('#remote_container').html('<%= j render "subject_user_form" %>');
+  $('#remote_container').html('<%= j render "subject_users_form" %>');
 <% end %>
 $('#eventForm').modal('show');
