@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       get :confirm_presence
     end
   end
+  resources :tasks
   resources :forums
   get "user/my_events", to: "users#events"
 end
