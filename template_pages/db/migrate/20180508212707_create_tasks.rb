@@ -7,6 +7,8 @@ class CreateTasks < ActiveRecord::Migration[5.2]
       t.string :priority
       t.date :delivery_date
       t.integer :manager_id
+
+      t.timestamps
     end
   end
 end

@@ -87,6 +87,8 @@ ActiveRecord::Schema.define(version: 2018_05_08_212707) do
     t.string "priority"
     t.date "delivery_date"
     t.integer "manager_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
