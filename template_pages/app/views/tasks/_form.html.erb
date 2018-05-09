@@ -44,13 +44,25 @@
                                       class: 'btn btn-danger pull-right m-t-10',
                                       remote: true unless @task.new_record? %>
                         <%= f.button :submit, class: 'pull-right m-t-10 m-r-10' %>
-                      </div>  
+                      </div> 
+                      <h4 class="sub-title"> Comentarios </h4>
+                      <% if @task.new_record? %>
+                        <p>Antes de adicionar comentários você terá que salvar a tarefa principal.</p>
+                      <% else %>
+                        <div id="comments" >
+                          <%= f.simple_fields_for :comments do |comment| %>
+                            <%= render 'comment_fields', f: comment %>
+                          <% end %>
+                          <div class='links'>
+                            <%= link_to_add_association 'Adicionar Comentário', f, :comments, class: 'btn btn-success btn-cons' %>
+                          </div>
+                        </div>
+                      <% end %>
                     </div>
                     <h4 class="progress" style="display: none">Progress: <span class="progress_count"></span>%</h4>
                   </div>
                 </div>
               </div>
-
               <div class="col-md-6">
                 <div class="card card-default">
                   <div class="card-block">

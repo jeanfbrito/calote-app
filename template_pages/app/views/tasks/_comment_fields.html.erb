@@ -1,0 +1,13 @@
+<div class="nested-fields row m-b-10">
+  <%= f.input :user_id, as: :hidden, :input_html => { :value => current_user.id } %>
+  <div class="col-md-12">
+    <%= f.input :body %>
+  </div>
+  <div class="col-md-12">
+    <%= f.file_field :files, multiple: true, direct_upload: true, class: "subject-file" %>
+  </div>
+  <div class="col-md-12 text-center">
+    <%= link_to_remove_association "<i class='fa fa-times'></i> Remover comentário".html_safe, f, class: 'btn btn-danger', title: 'remover comment' %>
+    <hr>
+  </div>
+</div>

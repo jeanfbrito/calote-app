@@ -41,6 +41,7 @@ class TasksController < ApplicationController
         :title, :description, :status, 
         :priority, :delivery_date, :manager_id,
         user_ids: [],
-        subtasks_attributes: [:id, :title, :description, :status, :priority, :delivery_date, user_ids: [] ])
+        comments_attributes: [:id, :user_id, :task_id, :body, :_destroy],
+        subtasks_attributes: [:id, :title, :description, :status, :priority, :_destroy, :delivery_date, user_ids: [] ])
     end
 end
