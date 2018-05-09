@@ -9,7 +9,7 @@
     <%= f.association :users, collection: User.all, label_method: :name, value_method: :id, wrapper_html: { class: 'form-group-default-select2' } %>
   </div>
   <div class="col-md-6">
-    <%= f.input :delivery_date, as: :date_time_picker %>
+    <%= f.input :delivery_date, :as => :string, :input_html => { :class => "date-picker", :value => (f.object.delivery_date) ? localize(f.object.delivery_date) : Time.now.strftime("%d/%m/%Y") } %>
   </div>
   <div class="col-md-6">
     <%= f.input :status %>
