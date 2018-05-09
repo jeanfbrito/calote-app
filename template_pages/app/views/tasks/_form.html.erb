@@ -7,7 +7,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
               <i class="pg-close fs-14"></i>
             </button>
-            <h3>Nova Tarefa</h3>
+            <h3>Tarefa Base</h3>
           </div>
           <div class="modal-body">
             <div class="row">
@@ -25,7 +25,7 @@
                         <%= f.input :manager_id, collection: User.all, label_method: :name, value_method: :id, wrapper_html: { class: 'form-group-default-select2' }, input_html: { class: 'trigger-change'} %>
                       </div>
                       <div class="col-md-6">
-                        <%= f.input :delivery_date, input_html: { class: "form-control input-sm date-picker", id: "task_delivery_date" } %>
+                        <%= f.input :delivery_date, as: :date_time_picker %>
                       </div>
                       <div class="col-md-6">
                         <%= f.input :status %>
@@ -59,7 +59,7 @@
                       <% if @task.new_record? %>
                         <p>Antes de adicionar sub-tarefas você terá que salvar a tarefa principal.</p>
                       <% else %>
-                        <div id="subjects" >
+                        <div id="subtasks" >
                           <%= f.simple_fields_for :subtasks do |subtask| %>
                             <%= render 'subtask_fields', f: subtask %>
                           <% end %>

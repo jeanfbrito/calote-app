@@ -1,16 +1,7 @@
 var date_picker;
 date_picker = function() {
   $('.date-picker').datepicker({
-    locale: {
-      locale: 'pt-br',
-      "applyLabel": "Salvar",
-      "cancelLabel": "Cancelar",
-      "fromLabel": "Início",
-      "toLabel": "Fim"
-    },
-    timePicker: true,
-    timePickerIncrement: 10,
-    format: 'DD/MM/YYYY h:mm A'
+    format: 'dd/mm/yyyy'
   });
 };
 
@@ -26,7 +17,7 @@ $(document).on('shown.bs.modal', "#taskForm", function () {
     $("#task_user_ids").val(user_ids).trigger('change');
   });
 
-  $('#subjects').on('cocoon:after-insert', function(e, added_task) {
+  $('#subtasks').on('cocoon:after-insert', function(e, added_task) {
     added_task.find('select').select2({ dropdownParent: $("#taskForm") });
   });
 });
