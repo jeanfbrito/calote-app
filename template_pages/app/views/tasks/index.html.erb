@@ -19,6 +19,7 @@
             <th>Data de entrega</th>
             <th>Gerente</th>
             <th>Usuários</th>
+            <th>Sub-tarefas</th>
             <th class="actions">ações</th>
           </thead>
           <tbody>
@@ -30,7 +31,7 @@
                 <td><%= task.delivery_date %></td>
                 <td><%= task.manager_id %></td>
                 <td><%= task.users.count %></td>
-                <td><%=  %></td>
+                <td><%= task.children.count %></td>
                 <td class="actions">
                   <div class="btn-group">
                     <%= link_to "<i class='fa fa-pencil'></i>".html_safe, edit_task_path(task), remote: true , class: "btn btn-primary" %>
