@@ -17,7 +17,8 @@
   <div class="col-md-6">
     <%= f.input :priority %>
   </div>
-  <div class="col-md-2">
-    <%= link_to_remove_association "<i class='fa fa-times'></i>".html_safe, f, class: 'btn btn-danger', title: 'remover assunto' %>
+  <div class="col-md-12 text-center">
+    <%= link_to_remove_association "<i class='fa fa-times'></i> Remover sub-task".html_safe, f, class: 'btn btn-danger', title: 'remover subtask' %>
+    <hr>
   </div>
 </div>
