@@ -6,7 +6,7 @@ class TasksController < ApplicationController
   end
 
   def show
-    @comments = @task.comments.all
+    @comments = @task.comments.roots
   end
 
   def new
@@ -39,7 +39,7 @@ class TasksController < ApplicationController
 
     def task_params
       params.require(:task).permit(
-        :title, :description, :status, 
+        :title, :description, :status,
         :priority, :delivery_date, :manager_id,
         user_ids: [],
         subtasks_attributes: [:id, :title, :description, :status, :priority, :_destroy, :delivery_date, user_ids: [] ])

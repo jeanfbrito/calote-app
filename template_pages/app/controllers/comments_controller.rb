@@ -6,12 +6,17 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     @comments = @task.comments
 
+    if params[:comment][:ancestry].present?
+      @comment.ancestry = params[:comment][:ancestry]
+    end
+
     if @comment.save
       flash[:success] = 'Your comment was successfully added!'
-      redirect_to request.referer
     else
-      render 'new'
+      flash[:error] = 'Your comment was not added!'
     end
+
+    redirect_to request.referer
   end
 
   def destroy
