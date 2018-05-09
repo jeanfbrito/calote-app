@@ -34,6 +34,7 @@
                 <td><%= task.children.count %></td>
                 <td class="actions">
                   <div class="btn-group">
+                    <%= link_to "<i class='fa fa-th-list'></i>".html_safe, task_path(task), class: "btn btn-primary" %>
                     <%= link_to "<i class='fa fa-pencil'></i>".html_safe, edit_task_path(task), remote: true , class: "btn btn-primary" %>
                     <%= link_to "<i class='fa fa-trash-o'></i>".html_safe, task, method: :delete, class: "btn btn-primary" %>
                   </div>

@@ -15,28 +15,17 @@
         <p><strong>Status:</strong> <%= @task.status %></p>
         <p><strong>Prioridade:</strong> <%= @task.priority %></p>
         <p><strong>Ultima atualização:</strong> <%=@task.updated_at %></p>
+        <p><strong>Membros:</strong> <%= @task.users.map(&:name).join(", ") %></p>
         <p><strong>Descrição:</strong> <%= @task.description %></p>
       </div>
       <div class="card-header separator">
         <div class="card-title">
-          <h3>Membros</h3>
+          <h3>Comentários</h3>
+          <%= render @comments %>
+          </div>
         </div>
       </div>
       <div class="card-block">
-        <table class="table table-hover table-condensed dataTable no-footer">
-          <thead>
-            <th>Nome</th>
-            <th>Email</th>
-          </thead>
-          <tbody>
-            <% @task.users.each do |task_user| %>
-              <tr>
-                <td><%= task_user.name %></td>
-                <td><%= task_user.email %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
       </div>
       <div class="card-header separator">
         <div class="card-title">
