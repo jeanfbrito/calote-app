@@ -1,7 +1,16 @@
-<div class="well">
-  <blockquote>
-    <p><%= comment.body %></p>
-  </blockquote>
+<div class="well" data-comment-id="<%= comment.id %>">
+  <p><%= comment.body %></p>
   <p class="text-muted">Added by <strong><%= comment.user.name %></strong> on
-    <%= l(comment.created_at, format: '%B, %d %Y %H:%M:%S') %></p>
+  <%= l(comment.created_at, format: '%B, %d %Y %H:%M:%S') %></p>
+
+  <%= link_to 'Excluir',
+                comment,
+                method: :delete,
+                class: 'btn btn-danger pull-right delete_comment',
+                remote: true unless current_user != comment.user%>
+  <%= link_to 'Responder',
+                comment,
+                method: :delete,
+                class: 'btn btn-info',
+                remote: true %>
 </div>

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     end
   end
   resources :tasks
+  resources :comments
   resources :forums
   get "user/my_events", to: "users#events"
 end

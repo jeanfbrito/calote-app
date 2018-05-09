@@ -21,5 +21,9 @@ $(document).on('shown.bs.modal', "#taskForm", function () {
     added_task.find('select').select2({ dropdownParent: $("#taskForm") });
     date_picker();
   });
-});
 
+  $('.delete_comment').on('ajax:success', function(e, data, status, xhr) {
+    $(e.currentTarget).parent('.well').remove();
+    console.log("apagou");
+  });
+});
