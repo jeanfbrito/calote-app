@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_08_230100) do
+ActiveRecord::Schema.define(version: 2018_05_09_003033) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -91,6 +91,12 @@ ActiveRecord::Schema.define(version: 2018_05_08_230100) do
     t.datetime "updated_at", null: false
     t.string "ancestry"
     t.index ["ancestry"], name: "index_tasks_on_ancestry"
+  end
+
+  create_table "tasks_users", force: :cascade do |t|
+    t.integer "task_id"
+    t.integer "user_id"
+    t.index ["task_id", "user_id"], name: "index_tasks_users_on_task_id_and_user_id"
   end
 
   create_table "users", force: :cascade do |t|
