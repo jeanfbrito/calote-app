@@ -23,6 +23,3 @@ $(document).on('shown.bs.modal', "#taskForm", function () {
   });
 });
 
-
-
-

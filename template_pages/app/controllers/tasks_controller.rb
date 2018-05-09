@@ -16,12 +16,19 @@ class TasksController < ApplicationController
   end
 
   def create
+    @task = Task.new(task_params)
+    @task.save
+    render :edit
   end
 
   def update
+    @task.update(task_params)
+    redirect_to tasks_path
   end
 
   def destroy
+    @task.destroy
+    redirect_to tasks_path
   end
 
   private
