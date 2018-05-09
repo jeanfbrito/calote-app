@@ -19,6 +19,7 @@ $(document).on('shown.bs.modal', "#taskForm", function () {
 
   $('#subtasks').on('cocoon:after-insert', function(e, added_task) {
     added_task.find('select').select2({ dropdownParent: $("#taskForm") });
+    date_picker();
   });
 });
 
