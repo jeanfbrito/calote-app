@@ -1,15 +1,14 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
-  def new
-    @comment = Comment.new
-  end
 
   def create
+    @task = Task.find(comment_params[:task_id])
     @comment = Comment.new(comment_params)
+    @comments = @task.comments
 
     if @comment.save
       flash[:success] = 'Your comment was successfully added!'
-      redirect_to root_url
+      redirect_to request.referer
     else
       render 'new'
     end
@@ -26,7 +25,7 @@ class CommentsController < ApplicationController
   private
 
     def comment_params
-      params.require(:comment).permit(:user_id, :body)
+      params.require(:comment).permit(:user_id, :task_id, :body)
     end
 
     def set_comment
