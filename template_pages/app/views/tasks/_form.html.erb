@@ -1,0 +1,81 @@
+<div class="modal fade fill-in" id="taskForm" tabindex="-1" role="dialog" aria-labelledby="modalSlideUpLabel" aria-hidden="false">
+  <div class="modal-dialog modal-event">
+    <div class="modal-content-wrapper">
+      <div class="modal-content">
+        <%= simple_form_for @task, remote: true, input_html: { id: "task_form" } do |f| %>
+          <div class="modal-header clearfix text-left">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+              <i class="pg-close fs-14"></i>
+            </button>
+            <h3>Nova Tarefa</h3>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="card card-default">
+                  <div class="card-block">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <%= f.input :title %>
+                      </div>
+                      <div class="col-md-12">
+                        <%= f.input :description, as: :text %>
+                      </div>
+                      <div class="col-md-6">
+                        <%= f.input :manager_id, collection: User.all, label_method: :name, value_method: :id, wrapper_html: { class: 'form-group-default-select2' }, input_html: { class: 'trigger-change'} %>
+                      </div>
+                      <div class="col-md-6">
+                        <%= f.input :delivery_date, input_html: { class: "form-control input-sm date-picker", id: "task_delivery_date" } %>
+                      </div>
+                      <div class="col-md-6">
+                        <%= f.input :status %>
+                      </div>
+                      <div class="col-md-6">
+                        <%= f.input :priority %>
+                      </div>
+                      <h4>Participantes da tarefa</h4>
+                      <div class="col-md-12">
+                        <%= f.association :users, collection: User.all, label_method: :name, value_method: :id, wrapper_html: { class: 'form-group-default-select2' } %>
+                      </div>
+                      <div class="col-md-6">
+                        <%= link_to 'Excluir',
+                                      @task,
+                                      method: :delete,
+                                      class: 'btn btn-danger pull-right m-t-10',
+                                      remote: true unless @task.new_record? %>
+                        <%= f.button :submit, class: 'pull-right m-t-10 m-r-10' %>
+                      </div>  
+                    </div>
+                    <h4 class="progress" style="display: none">Progress: <span class="progress_count"></span>%</h4>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="card card-default">
+                  <div class="card-block">
+                    <div class="row">
+                      <h4 class="sub-title"> Subtarefas </h4>
+                      <% if @task.new_record? %>
+                        <p>Antes de adicionar sub-tarefas você terá que salvar a tarefa principal.</p>
+                      <% else %>
+                        <div id="subjects" >
+                          <%= f.simple_fields_for :subtasks do |subtask| %>
+                            <%= render 'subtask_fields', f: subtask %>
+                          <% end %>
+                          <div class='links'>
+                            <%= link_to_add_association 'Adicionar sub-task', f, :subtasks, class: 'btn btn-default btn-cons' %>
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

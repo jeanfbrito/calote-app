@@ -1,5 +1,5 @@
 class Task < ApplicationRecord
-  acts_as_tree
+  has_ancestry
   extend Enumerize
   enumerize :status, in: [
     :pending,
@@ -12,7 +12,14 @@ class Task < ApplicationRecord
     :normal,
     :high
   ], default: :normal, scope: true
-  
+
+  has_many :tasks_users, dependent: :destroy
+  has_many :users, through: :tasks_users
+
+  has_many :subtasks, class_name: "Task", foreign_key: "ancestry"
+  belongs_to :parent, class_name: "Task", optional: true, foreign_key: "ancestry"
+  accepts_nested_attributes_for :subtasks
+
   def have_subtasks?
     if children.count > 0
       return true

@@ -1,0 +1,23 @@
+<div class="nested-fields row m-b-10">
+  <div class="col-md-12">
+    <%= f.input :title %>
+  </div>
+  <div class="col-md-12">
+    <%= f.input :description %>
+  </div>
+  <div class="col-md-6">
+    <%#= f.association :users, collection: User.all, label_method: :name, value_method: :id, wrapper_html: { class: 'form-group-default-select2' } %>
+  </div>
+  <div class="col-md-6">
+    <%= f.input :status %>
+  </div>
+  <div class="col-md-6">
+    <%= f.input :priority %>
+  </div>
+  <div class="col-md-6">
+    <%= f.input :delivery_date %>
+  </div>
+  <div class="col-md-2">
+    <%= link_to_remove_association "<i class='fa fa-times'></i>".html_safe, f, class: 'btn btn-danger', title: 'remover assunto' %>
+  </div>
+</div>
