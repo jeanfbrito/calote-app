@@ -5,6 +5,10 @@ class CommentsController < ApplicationController
     @task = Task.find(comment_params[:task_id])
     @comment = Comment.new(comment_params)
     @comments = @task.comments
+    
+    if params[:comment][:files]
+      @comment.files.attach(params[:comment][:files])
+    end
 
     if params[:comment][:ancestry].present?
       @comment.ancestry = params[:comment][:ancestry]
@@ -21,8 +25,11 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment_id = @comment.id
-
+    
     if @comment.destroy
+      if @comment.files.attached?
+        @comment.files.find(params[:id]).purge
+      end
       @response = 'success'
     end
   end

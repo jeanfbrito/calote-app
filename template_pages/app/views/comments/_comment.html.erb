@@ -1,30 +1,65 @@
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <p><%= comment.body %></p>
-    <p class="text-muted">Added by <strong><%= comment.user.name %></strong> on
-    <%= l(comment.created_at, format: '%B, %d %Y %H:%M:%S') %></p>
-
-    <%= link_to 'Excluir',
-                  comment,
-                  method: :delete,
-                  class: 'btn btn-danger pull-right delete_comment',
-                  remote: true if current_user == comment.user %>
-    <%= link_to 'Responder',
-                  comment,
-                  method: :delete,
-                  class: 'btn btn-info',
-                  remote: true %>
+<div class="media" data-comment-id="<%= comment.id %>">
+  <div class="media-left">
+    <a href="#">
+      <img alt="64x64" class="media-object" data-src="" src="http://individual.icons-land.com/IconsPreview/People/PNG/Misc/256x256/Person_Defined_Male_Dark.png"
+        data-holder-rendered="true" style="width: 32px; height: 32px;"> </a>
   </div>
-  <div class="panel-body">
-    <% comment.subcomments.each do |comment| %>
-      <hr>
-      <div class="col-offset-2">
-        <p><%= comment.body %></p>
-        <p class="text-muted">Added by <strong><%= comment.user.name %></strong> on
-        <%= l(comment.created_at, format: '%B, %d %Y %H:%M:%S') %></p>
-      </div>
+  <div class="media-body">
+    <p><%= comment.body %>  </p>     
+    <% comment.files.each do |file| %>
+        <a href="<%= url_for(file) %>" target="_blank" class="">
+          <strong><i class="fa fa-paperclip" aria-hidden="true"> <%= file.filename %></i></strong>
+        </a>
+        <br>
     <% end %>
-
-    <%= render partial: "comments/form", locals: { comment: @task.comments.new(ancestry: comment.id, user: current_user) } %>
+    <p class="small">Added by
+      <strong>
+        <%= comment.user.name %>
+      </strong> on
+      <%= l(comment.created_at, format: '%B, %d %Y %H:%M:%S') %>
+      <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe,
+                  comment,
+                  method: :delete,
+                  style: 'padding-top:0px;',
+                  class: 'pull-right delete_comment',
+                  remote: true if current_user == comment.user %>
+    </p>
+    <% comment.subcomments.each do |subcomment| %>
+      <hr>
+      <div class="media" data-comment-id="<%= subcomment.id %>">
+        <div class="media-left">
+          <a href="#">
+            <img alt="64x64" class="media-object" data-src="" src="http://individual.icons-land.com/IconsPreview/People/PNG/Misc/256x256/Person_Defined_Male_Dark.png"
+              data-holder-rendered="true" style="width: 32px; height: 32px;"> </a>
+        </div>
+        <div class="media-body">
+          <p>
+            <%= subcomment.body %>
+          </p>                  
+            <% subcomment.files.each do |file| %>
+                <a href="<%= url_for(file) %>" target="_blank" class="">
+                 <strong><i class="fa fa-paperclip" aria-hidden="true"> <%= file.filename %></i></strong>
+                </a>
+                <br>
+            <% end %>
+          
+          <p class="small">Added by
+            <strong>
+              <%= subcomment.user.name %>
+            </strong> on
+            <%= l(subcomment.created_at, format: '%B, %d %Y %H:%M:%S') %>
+            <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe,
+                        subcomment,
+                        method: :delete,
+                        style: 'padding-top:0px;',
+                        class: 'pull-right delete_comment',
+                        remote: true if current_user == subcomment.user %>
+          </p>  
+        </div>
+      </div>
+      <% end %>    
+  <hr>
+  <%= render partial: "comments/form", locals: { comment: @task.comments.new(ancestry: comment.id, user: current_user) } %>
   </div>
 </div>
+<hr>

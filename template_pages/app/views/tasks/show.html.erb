@@ -21,6 +21,7 @@
       <div class="card-header separator">
         <div class="card-title">
           <h3>Comentários</h3>
+          <hr>
           <%= render @comments %>
           <%= render partial: "comments/form", locals: { comment: @task.comments.new(user: current_user) } %>
           </div>
