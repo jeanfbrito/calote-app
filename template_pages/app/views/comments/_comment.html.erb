@@ -58,8 +58,12 @@
         </div>
       </div>
       <% end %>    
-  <hr>
-  <%= render partial: "comments/form", locals: { comment: @task.comments.new(ancestry: comment.id, user: current_user) } %>
+      <hr>
+      <button class="btn-default comment_button" data-comment-id="<%= comment.id %>">Responder</button>
+      <div class="subcomment_<%= comment.id %>" style="display:none;">
+        <br>
+        <%= render partial: "comments/form", locals: { comment: @task.comments.new(ancestry: comment.id, user: current_user) } %>
+      </div>
   </div>
 </div>
 <hr>

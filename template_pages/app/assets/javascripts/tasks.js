@@ -27,3 +27,11 @@ $(document).on('shown.bs.modal', "#taskForm", function () {
     console.log("apagou");
   });
 });
+
+$(document).on("ready turbolinks:load", function(){
+  $(".comment_button").click(function(){
+    var subcommentId = $(this).data("comment-id");
+    $(".subcomment_" + subcommentId).toggle();
+    console.log(".subcomment_"+ subcommentId);
+  });
+});
